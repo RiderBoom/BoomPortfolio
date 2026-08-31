@@ -1,16 +1,48 @@
-# React + Vite
+# BoomPortfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+เว็บไซต์ Portfolio ของ Wisitchai Bunrae และ BoomTech Studio สำหรับนำเสนอผลงานด้าน Full-Stack Architecture, Real-Time Dispatch, Web3 และระบบ Mission-Critical
 
-Currently, two official plugins are available:
+## เทคโนโลยี
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 และ Vite
+- Tailwind CSS
+- Lucide React
+- Netlify Forms สำหรับแบบฟอร์มติดต่อ
+- Oxlint และ GitHub Actions สำหรับตรวจคุณภาพ
 
-## React Compiler
+## เริ่มต้นใช้งาน
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+ต้องใช้ Node.js 20 ขึ้นไป
 
-## Expanding the Oxlint configuration
+```bash
+npm ci
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+เว็บไซต์สำหรับพัฒนาจะเปิดตาม URL ที่ Vite แสดง
+
+## ตรวจสอบก่อนเผยแพร่
+
+```bash
+npm run lint
+npm test
+npm run build
+```
+
+ไฟล์สำหรับเผยแพร่จะอยู่ในโฟลเดอร์ `dist`
+
+## การเผยแพร่บน Netlify
+
+โปรเจกต์มีไฟล์ `netlify.toml` กำหนดคำสั่ง build และโฟลเดอร์เผยแพร่ไว้แล้ว เมื่อลิงก์รีโพกับ Netlify ระบบจะ build และเปิดใช้แบบฟอร์ม `consultation` อัตโนมัติ
+
+## โครงสร้างหลัก
+
+- `src/components` — ส่วนประกอบหน้าเว็บ
+- `src/data/portfolioData.js` — ข้อมูลโปรไฟล์ ผลงาน และบริการ
+- `public` — ไฟล์สาธารณะ เช่น favicon
+- `.github/workflows/ci.yml` — ตรวจ lint, test และ build ทุก Pull Request
+
+## ติดต่อ
+
+- Email: contact@boomtech.app
+- GitHub: https://github.com/RiderBoom

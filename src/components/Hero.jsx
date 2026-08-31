@@ -4,7 +4,7 @@ import { profileData, techStackData } from '../data/portfolioData';
 
 export default function Hero({ onOpenTerminal }) {
   return (
-    <section className="py-20 sm:py-28 max-w-6xl mx-auto px-6">
+    <section id="about" className="py-20 sm:py-28 max-w-6xl mx-auto px-6">
       {/* Badge */}
       <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-xs text-zinc-300 mb-8 backdrop-blur-sm">
         <Terminal className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />

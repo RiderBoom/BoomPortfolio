@@ -8,8 +8,8 @@ export const profileData = {
     phone: "0950524447",
     email: "contact@boomtech.app",
     location: "Khao Sai, Phichit, Thailand (Operating Globally)",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
+    github: "https://github.com/RiderBoom",
+    linkedin: "",
     availability: "Available for Architecture Consulting & Custom Systems"
   }
 };

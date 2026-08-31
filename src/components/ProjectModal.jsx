@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, ExternalLink, Layers, CheckCircle2 } from 'lucide-react';
 
 export default function ProjectModal({ project, onClose }) {
+  useEffect(() => {
+    if (!project) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [project, onClose]);
+
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
       <div className="bg-[#0e0e12] border border-zinc-800 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl">
         {/* Modal Header */}
         <div className="px-6 py-5 border-b border-zinc-800/80 flex items-center justify-between bg-zinc-900/50">
@@ -17,6 +26,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
           <button
             onClick={onClose}
+            aria-label="Close project details"
             className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -26,7 +36,7 @@ export default function ProjectModal({ project, onClose }) {
         {/* Modal Body */}
         <div className="p-6 sm:p-8 max-h-[80vh] overflow-y-auto space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-white">{project.title}</h2>
+            <h2 id="project-modal-title" className="text-2xl font-bold text-white">{project.title}</h2>
             <p className="text-zinc-300 text-sm mt-3 leading-relaxed">
               {project.fullDesc}
             </p>
