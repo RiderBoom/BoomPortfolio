@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Info, Layers } from 'lucide-react';
+import { ExternalLink, Info } from 'lucide-react';
 
 export default function ProjectCard({ project, onSelectProject }) {
   return (

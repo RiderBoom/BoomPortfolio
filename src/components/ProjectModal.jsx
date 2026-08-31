@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ExternalLink, Cpu, ShieldCheck, Layers, CheckCircle2 } from 'lucide-react';
+import { X, ExternalLink, Layers, CheckCircle2 } from 'lucide-react';
 
 export default function ProjectModal({ project, onClose }) {
   if (!project) return null;

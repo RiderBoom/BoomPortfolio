@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, Globe, MapPin, Copy, Check, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Copy, Check, Send } from 'lucide-react';
 import { profileData } from '../data/portfolioData';
 
 export default function ContactSection() {

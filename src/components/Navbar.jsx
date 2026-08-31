@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Terminal, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Terminal } from 'lucide-react';
 
 export default function Navbar({ onOpenTerminal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
