@@ -67,6 +67,8 @@ export default function Navbar({ onOpenTerminal }) {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-zinc-400 hover:text-white"
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -75,7 +77,7 @@ export default function Navbar({ onOpenTerminal }) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-zinc-800 bg-[#0a0a0c] px-6 py-4 space-y-3">
+        <div id="mobile-navigation" className="md:hidden border-b border-zinc-800 bg-[#0a0a0c] px-6 py-4 space-y-3">
           {navLinks.map((link) => (
             <a
               key={link.name}

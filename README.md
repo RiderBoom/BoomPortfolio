@@ -7,7 +7,7 @@
 - React 19 และ Vite
 - Tailwind CSS
 - Lucide React
-- Netlify Forms สำหรับแบบฟอร์มติดต่อ
+- Supabase Auth, Database และ Realtime สำหรับระบบแชท
 - Oxlint และ GitHub Actions สำหรับตรวจคุณภาพ
 
 ## เริ่มต้นใช้งาน
@@ -33,7 +33,7 @@ npm run build
 
 ## การเผยแพร่บน Netlify
 
-โปรเจกต์มีไฟล์ `netlify.toml` กำหนดคำสั่ง build และโฟลเดอร์เผยแพร่ไว้แล้ว เมื่อลิงก์รีโพกับ Netlify ระบบจะ build และเปิดใช้แบบฟอร์ม `consultation` อัตโนมัติ
+โปรเจกต์มีไฟล์ `netlify.toml` กำหนดคำสั่ง build, โฟลเดอร์เผยแพร่ และ security headers เมื่อลิงก์รีโพกับ Netlify ระบบจะ build อัตโนมัติ
 
 ## โครงสร้างหลัก
 
@@ -42,7 +42,8 @@ npm run build
 - `public` — ไฟล์สาธารณะ เช่น favicon
 - `.github/workflows/ci.yml` — ตรวจ lint, test และ build ทุก Pull Request
 
-## ติดต่อ
+## ระบบแชท
 
-- Email: contact@boomtech.app
+- Visitor chat: `/#contact`
+- Admin Inbox: `/admin`
 - GitHub: https://github.com/RiderBoom

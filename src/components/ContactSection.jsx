@@ -3,6 +3,9 @@ import { MessageCircle, Send, ShieldCheck } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 const conversationStorageKey = 'boomtech_conversation_id';
+const mergeMessage = (current, next) => current.some(({ id }) => id === next.id)
+  ? current
+  : [...current, next].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
 
 export default function ContactSection() {
   const [visitorName, setVisitorName] = useState('');
@@ -50,7 +53,7 @@ export default function ContactSection() {
 
       channel = supabase.channel(`conversation:${conversation.id}`)
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `conversation_id=eq.${conversation.id}` }, ({ new: newMessage }) => {
-          setMessages((current) => current.some(({ id }) => id === newMessage.id) ? current : [...current, newMessage]);
+          setMessages((current) => mergeMessage(current, newMessage));
         }).subscribe();
       setStatus('ready');
     };
@@ -94,7 +97,7 @@ export default function ContactSection() {
         .insert({ conversation_id: activeConversationId, owner_id: user.id, body })
         .select('id, sender, body, created_at').single();
       if (error) throw error;
-      setMessages((current) => [...current, message]);
+      setMessages((current) => mergeMessage(current, message));
       setDraft('');
       setStatus('ready');
     } catch {
@@ -124,9 +127,10 @@ export default function ContactSection() {
             <div ref={messageEndRef} />
           </div>
           <form onSubmit={submitMessage} className="border-t border-zinc-800 p-4 space-y-3">
-            {!conversationId && <input value={visitorName} onChange={(event) => setVisitorName(event.target.value)} maxLength={80} required placeholder="ชื่อของคุณ / บริษัท" className="w-full rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-white outline-none focus:border-emerald-500" />}
+            {!conversationId ? <><label htmlFor="visitor-name" className="sr-only">ชื่อของคุณหรือบริษัท</label><input id="visitor-name" value={visitorName} onChange={(event) => setVisitorName(event.target.value)} maxLength={80} required autoComplete="name" placeholder="ชื่อของคุณ / บริษัท" className="w-full rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-white outline-none focus:border-emerald-500" /></> : null}
             <div className="flex gap-2">
-              <textarea value={draft} onChange={(event) => setDraft(event.target.value)} maxLength={2000} required rows={2} placeholder="พิมพ์ข้อความเกี่ยวกับโปรเจกต์..." className="min-h-12 flex-1 resize-none rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-500" />
+              <label htmlFor="chat-message" className="sr-only">ข้อความเกี่ยวกับโปรเจกต์</label>
+              <textarea id="chat-message" value={draft} onChange={(event) => setDraft(event.target.value)} maxLength={2000} required rows={2} placeholder="พิมพ์ข้อความเกี่ยวกับโปรเจกต์..." className="min-h-12 flex-1 resize-none rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-500" />
               <button type="submit" disabled={!isSupabaseConfigured || status === 'connecting' || status === 'sending'} aria-label="Send chat message" className="self-stretch rounded-lg bg-emerald-500 px-4 text-black hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50"><Send className="w-4 h-4" /></button>
             </div>
             {errorMessage && <p role="alert" className="text-xs text-rose-400">{errorMessage}</p>}

@@ -1,0 +1,17 @@
+{
+  "name": "Wisitchai Bunrae — BoomTech",
+  "short_name": "BoomTech CEO",
+  "description": "CEO and Lead System Architect at BoomTech",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050b16",
+  "theme_color": "#050b16",
+  "icons": [
+    {
+      "src": "/boomtech-favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

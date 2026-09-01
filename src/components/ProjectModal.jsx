@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { X, ExternalLink, Layers, CheckCircle2 } from 'lucide-react';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 export default function ProjectModal({ project, onClose }) {
-  useEffect(() => {
-    if (!project) return undefined;
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [project, onClose]);
+  const dialogRef = useModalAccessibility(Boolean(project), onClose);
 
   if (!project) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
-      <div className="bg-[#0e0e12] border border-zinc-800 rounded-2xl max-w-2xl w-full max-h-[calc(100dvh-2rem)] overflow-hidden shadow-2xl flex flex-col">
+      <div ref={dialogRef} className="bg-[#0e0e12] border border-zinc-800 rounded-2xl max-w-2xl w-full max-h-[calc(100dvh-2rem)] overflow-hidden shadow-2xl flex flex-col">
         {/* Modal Header */}
         <div className="px-6 py-5 border-b border-zinc-800/80 flex items-center justify-between bg-zinc-900/50">
           <div className="flex items-center space-x-3">

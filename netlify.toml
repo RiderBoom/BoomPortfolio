@@ -1,3 +1,17 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-o53tMYti3ynwyQhMq7NaoKpPWlfprjXVm2dVGgUAkFo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://umhkkxaxjhajhrowaqkx.supabase.co wss://umhkkxaxjhajhrowaqkx.supabase.co; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
