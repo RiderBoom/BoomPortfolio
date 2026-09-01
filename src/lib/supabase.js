@@ -9,3 +9,13 @@ export const supabase = isSupabaseConfigured
       auth: { persistSession: true, autoRefreshToken: true },
     })
   : null;
+
+export const adminSupabase = isSupabaseConfigured
+  ? createClient(supabaseUrl, supabaseKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        storageKey: 'boomtech-admin-auth',
+      },
+    })
+  : null;

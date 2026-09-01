@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, CheckCircle2, LogOut, MessageCircle, Send } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { ArrowLeft, CheckCircle2, KeyRound, LogOut, MessageCircle, Send, X } from 'lucide-react';
+import { adminSupabase as supabase } from '../lib/supabase';
 
 const mergeMessage = (current, next) => current.some(({ id }) => id === next.id)
   ? current
@@ -14,6 +14,9 @@ export default function AdminInbox() {
   const [activeId, setActiveId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [draft, setDraft] = useState('');
+  const [passwordSetupOpen, setPasswordSetupOpen] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [status, setStatus] = useState('loading');
   const [errorMessage, setErrorMessage] = useState('');
   const messageEndRef = useRef(null);
@@ -144,6 +147,23 @@ export default function AdminInbox() {
     if (error) setErrorMessage(error.message);
   };
 
+  const updatePassword = async (event) => {
+    event.preventDefault();
+    setErrorMessage('');
+    if (newPassword.length < 10 || newPassword !== confirmPassword) {
+      setErrorMessage('รหัสผ่านต้องมีอย่างน้อย 10 ตัวอักษร และทั้งสองช่องต้องตรงกัน');
+      return;
+    }
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error) {
+      setErrorMessage(error.message);
+      return;
+    }
+    setNewPassword('');
+    setConfirmPassword('');
+    setPasswordSetupOpen(false);
+  };
+
   const selectConversation = (conversationId) => {
     setMessages([]);
     setActiveId(conversationId);
@@ -179,7 +199,7 @@ export default function AdminInbox() {
     <main className="min-h-screen bg-[#07090d] text-zinc-100">
       <header className="flex h-16 items-center justify-between border-b border-zinc-800 px-5 sm:px-8">
         <div><h1 className="font-bold">BoomTech Admin Inbox</h1><p className="text-xs text-zinc-500">{session.user.email}</p></div>
-        <button onClick={() => supabase.auth.signOut()} className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-900"><LogOut className="h-4 w-4" /> ออกจากระบบ</button>
+        <div className="flex items-center gap-2"><button onClick={() => setPasswordSetupOpen(true)} className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-900"><KeyRound className="h-4 w-4" /><span className="hidden sm:inline">ตั้งรหัสผ่าน</span></button><button onClick={() => supabase.auth.signOut()} className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-900"><LogOut className="h-4 w-4" /><span className="hidden sm:inline">ออกจากระบบ</span></button></div>
       </header>
       <div className="grid min-h-[calc(100vh-4rem)] lg:grid-cols-[22rem_1fr]">
         <aside className="border-b border-zinc-800 lg:border-b-0 lg:border-r">
@@ -205,6 +225,7 @@ export default function AdminInbox() {
           {errorMessage ? <p role="alert" className="border-t border-zinc-800 px-5 py-3 text-sm text-rose-400">{errorMessage}</p> : null}
         </section>
       </div>
+      {passwordSetupOpen ? <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-5"><form onSubmit={updatePassword} role="dialog" aria-modal="true" aria-labelledby="password-dialog-title" className="w-full max-w-sm rounded-2xl border border-zinc-800 bg-zinc-950 p-6 shadow-2xl"><div className="flex items-center justify-between"><h2 id="password-dialog-title" className="text-lg font-bold">ตั้งรหัสผ่านผู้ดูแล</h2><button type="button" onClick={() => setPasswordSetupOpen(false)} aria-label="ปิดหน้าตั้งรหัสผ่าน" className="rounded p-1 text-zinc-400 hover:text-white"><X className="h-4 w-4" /></button></div><p className="mt-2 text-xs text-zinc-500">ใช้รหัสผ่านอย่างน้อย 10 ตัวอักษร และไม่ซ้ำกับบริการอื่น</p><label htmlFor="new-password" className="mt-5 block text-sm text-zinc-300">รหัสผ่านใหม่</label><input id="new-password" type="password" autoComplete="new-password" minLength={10} required value={newPassword} onChange={(event) => setNewPassword(event.target.value)} className="mt-2 w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none focus:border-emerald-500" /><label htmlFor="confirm-password" className="mt-4 block text-sm text-zinc-300">ยืนยันรหัสผ่าน</label><input id="confirm-password" type="password" autoComplete="new-password" minLength={10} required value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className="mt-2 w-full rounded-lg border border-zinc-800 bg-black px-4 py-3 outline-none focus:border-emerald-500" /><button className="mt-6 w-full rounded-lg bg-emerald-500 px-4 py-3 font-semibold text-black">บันทึกรหัสผ่าน</button></form></div> : null}
     </main>
   );
 }
