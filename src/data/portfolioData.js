@@ -7,7 +7,6 @@ export const profileData = {
   about: "ผู้เชี่ยวชาญด้าน Software Architecture, Real-Time Systems และ Web3 Platform ที่มีประสบการณ์ออกแบบและพัฒนาระบบที่มีสถาปัตยกรรมรองรับการเติบโตระดับ High Concurrency พร้อมการดูแล infrastructure ตั้งแต่คลาวด์จนถึง On-Premise/Edge Cluster",
   contact: {
     phone: "0950524447",
-    email: "contact@boomtech.app",
     location: "Khao Sai, Phichit, Thailand (Operating Globally)",
     github: "https://github.com/RiderBoom",
     linkedin: "",
@@ -175,7 +174,7 @@ Database  : PostgreSQL, Supabase, MariaDB
 Web3      : Solidity, Web3.js, Viem, UUPS Proxy
 Infra     : Vercel, Docker, Edge Computing, Mini Data Center`,
   contact: `Phone    : 0950524447
-Email    : contact@boomtech.app
+Chat     : https://ceo.boomtech.app/#contact
 Location : Khao Sai, Phichit, Thailand
 Website  : https://boomtech.app`
 };

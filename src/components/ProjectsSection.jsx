@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
 import { projectCategories, projectsData } from '../data/portfolioData';
@@ -6,6 +6,7 @@ import { projectCategories, projectsData } from '../data/portfolioData';
 export default function ProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState('All Projects');
   const [activeProject, setActiveProject] = useState(null);
+  const closeProject = useCallback(() => setActiveProject(null), []);
 
   const filteredProjects = selectedCategory === 'All Projects'
     ? projectsData
@@ -56,7 +57,7 @@ export default function ProjectsSection() {
       {/* Modal Detailed View */}
       <ProjectModal
         project={activeProject}
-        onClose={() => setActiveProject(null)}
+        onClose={closeProject}
       />
     </section>
   );

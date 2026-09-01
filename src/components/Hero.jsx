@@ -55,14 +55,18 @@ export default function Hero({ onOpenTerminal }) {
         <figure className="relative max-w-sm mx-auto lg:max-w-none w-full">
           <div className="absolute -inset-4 rounded-[2rem] bg-emerald-500/10 blur-3xl" />
           <div className="relative overflow-hidden rounded-[1.75rem] border border-zinc-700/80 bg-zinc-900 shadow-2xl shadow-black/40">
-            <img
-              src="/ceo-wisitchai.png"
-              alt="Wisitchai Bunrae, Founder and Lead Architect at BoomTech"
-              className="aspect-[4/5] w-full object-cover object-top"
-              width="1122"
-              height="1402"
-              fetchPriority="high"
-            />
+            <picture>
+              <source srcSet="/ceo-wisitchai.webp" type="image/webp" />
+              <img
+                src="/ceo-wisitchai.png"
+                alt="Wisitchai Bunrae, Founder and Lead Architect at BoomTech"
+                className="aspect-[4/5] w-full object-cover object-top"
+                width="1122"
+                height="1402"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
             <figcaption className="absolute inset-x-3 bottom-3 rounded-xl border border-white/10 bg-black/75 p-3 backdrop-blur-md">
               <div className="text-sm font-semibold text-white">Wisitchai Bunrae</div>
               <div className="mt-0.5 text-[11px] font-mono text-emerald-400">Founder · Architect · Builder</div>

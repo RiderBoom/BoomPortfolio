@@ -3,9 +3,12 @@ import assert from 'node:assert/strict';
 import { profileData, projectCategories, projectsData, servicesData } from '../src/data/portfolioData.js';
 
 test('portfolio contact links are configured', () => {
-  assert.match(profileData.contact.email, /^[^@\s]+@[^@\s]+\.[^@\s]+$/);
   assert.equal(profileData.contact.github, 'https://github.com/RiderBoom');
   assert.notEqual(profileData.contact.linkedin, 'https://linkedin.com');
+});
+
+test('legacy consultation email is not exposed', () => {
+  assert.equal('email' in profileData.contact, false);
 });
 
 test('every project belongs to a visible category and has a valid live URL', () => {
