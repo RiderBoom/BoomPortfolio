@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BoomTech">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E2138"/>
+      <stop offset="1" stop-color="#030811"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="15" y1="12" x2="49" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6FE7FF"/>
+      <stop offset="1" stop-color="#08A8E8"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#bg)"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="14.25" fill="none" stroke="#1E6B91" stroke-width="1.5"/>
+  <path fill="url(#mark)" fill-rule="evenodd" d="M14 11h20c8.7 0 14 4.6 14 11.7 0 4.5-2.3 8-6.3 10.1 5.2 1.8 8.3 5.7 8.3 10.9C50 52 43.8 57 33.7 57H14V11Zm10 8v10h9.1c3.3 0 5.4-1.9 5.4-5s-2.1-5-5.4-5H24Zm0 17v13h9.8c4.1 0 6.6-2.3 6.6-6.5S37.9 36 33.8 36H24Z"/>
+  <path d="M47.5 8.5 54 15l-6.5 6.5L41 15l6.5-6.5Z" fill="#F4C35A"/>
+</svg>
