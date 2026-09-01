@@ -19,12 +19,9 @@ export default function TerminalWidget({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const handleCommand = (e) => {
-    e.preventDefault();
-    const cmd = input.trim().toLowerCase();
+  const runCommand = (rawCommand) => {
+    const cmd = rawCommand.trim().toLowerCase();
     if (!cmd) return;
-
-    const newHistory = [...history, { type: 'input', text: `$ ${input}` }];
 
     if (cmd === 'clear') {
       setHistory([]);
@@ -32,21 +29,26 @@ export default function TerminalWidget({ isOpen, onClose }) {
       return;
     }
 
-    if (terminalCommands[cmd]) {
-      newHistory.push({ type: 'output', text: terminalCommands[cmd] });
-    } else {
-      newHistory.push({
-        type: 'error',
-        text: `Command not found: "${cmd}". Type "help" for a list of valid commands.`
-      });
-    }
-
-    setHistory(newHistory);
+    setHistory((currentHistory) => [
+      ...currentHistory,
+      { type: 'input', text: `$ ${rawCommand.trim()}` },
+      terminalCommands[cmd]
+        ? { type: 'output', text: terminalCommands[cmd] }
+        : {
+            type: 'error',
+            text: `Command not found: "${cmd}". Type "help" for a list of valid commands.`,
+          },
+    ]);
     setInput('');
   };
 
+  const handleCommand = (event) => {
+    event.preventDefault();
+    runCommand(input);
+  };
+
   const executeQuickCmd = (cmd) => {
-    setInput(cmd);
+    runCommand(cmd);
   };
 
   return (
@@ -91,7 +93,9 @@ export default function TerminalWidget({ isOpen, onClose }) {
           {['help', 'about', 'projects', 'services', 'skills', 'contact'].map((c) => (
             <button
               key={c}
+              type="button"
               onClick={() => executeQuickCmd(c)}
+              aria-label={`Run ${c} command`}
               className="px-2 py-0.5 rounded bg-zinc-800/80 hover:bg-zinc-700 text-emerald-400 transition-colors"
             >
               {c}
