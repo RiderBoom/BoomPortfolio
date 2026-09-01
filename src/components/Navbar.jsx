@@ -5,8 +5,8 @@ export default function Navbar({ onOpenTerminal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Works', href: '#work' },
-    { name: 'Services', href: '#services' },
+    { name: 'Case studies', href: '#work' },
+    { name: 'Expertise', href: '#services' },
     { name: 'About', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -50,7 +50,7 @@ export default function Navbar({ onOpenTerminal }) {
             href="#contact"
             className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all shadow-sm hover:shadow-emerald-500/20"
           >
-            Get in touch
+            Start a conversation
           </a>
         </div>
 

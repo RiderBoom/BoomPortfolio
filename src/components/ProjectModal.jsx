@@ -15,7 +15,7 @@ export default function ProjectModal({ project, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
-      <div className="bg-[#0e0e12] border border-zinc-800 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl">
+      <div className="bg-[#0e0e12] border border-zinc-800 rounded-2xl max-w-2xl w-full max-h-[calc(100dvh-2rem)] overflow-hidden shadow-2xl flex flex-col">
         {/* Modal Header */}
         <div className="px-6 py-5 border-b border-zinc-800/80 flex items-center justify-between bg-zinc-900/50">
           <div className="flex items-center space-x-3">
@@ -34,12 +34,25 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 max-h-[80vh] overflow-y-auto space-y-6">
+        <div className="p-6 sm:p-8 min-h-0 overflow-y-auto space-y-6">
           <div>
             <h2 id="project-modal-title" className="text-2xl font-bold text-white">{project.title}</h2>
             <p className="text-zinc-300 text-sm mt-3 leading-relaxed">
               {project.fullDesc}
             </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              ['Problem', project.problem],
+              ['Approach', project.approach],
+              ['Outcome', project.outcome],
+            ].map(([label, copy]) => (
+              <div key={label} className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
+                <div className="text-[10px] uppercase tracking-widest font-mono text-emerald-400 mb-2">{label}</div>
+                <p className="text-xs leading-relaxed text-zinc-400">{copy}</p>
+              </div>
+            ))}
           </div>
 
           {/* Key System Highlights */}
@@ -83,7 +96,7 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-zinc-800/80 bg-zinc-900/50 flex items-center justify-between">
+        <div className="px-6 py-4 border-t border-zinc-800/80 bg-zinc-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
           <span className="text-xs font-mono text-zinc-500">
             {project.metrics}
           </span>

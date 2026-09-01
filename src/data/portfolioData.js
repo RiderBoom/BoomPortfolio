@@ -2,7 +2,8 @@ export const profileData = {
   name: "Wisitchai Bunrae",
   title: "Founder & Lead Architect at BoomTech",
   role: "Full-Stack System Architect & Web3 Specialist",
-  tagline: "Building resilient real-time dispatch platforms, high-performance web systems, and mission-critical applications.",
+  headline: "I design and ship software that keeps moving when the real world gets complicated.",
+  tagline: "Production systems for on-demand logistics, real-time operations, Web3 infrastructure, and edge-first response workflows.",
   about: "ผู้เชี่ยวชาญด้าน Software Architecture, Real-Time Systems และ Web3 Platform ที่มีประสบการณ์ออกแบบและพัฒนาระบบที่มีสถาปัตยกรรมรองรับการเติบโตระดับ High Concurrency พร้อมการดูแล infrastructure ตั้งแต่คลาวด์จนถึง On-Premise/Edge Cluster",
   contact: {
     phone: "0950524447",
@@ -13,6 +14,13 @@ export const profileData = {
     availability: "Available for Architecture Consulting & Custom Systems"
   }
 };
+
+export const credibilityData = [
+  { value: "Live", label: "Production systems", detail: "Public products you can inspect" },
+  { value: "< 100ms", label: "Dispatch latency", detail: "Real-time assignment target" },
+  { value: "99.9%", label: "Service reliability", detail: "Production uptime target" },
+  { value: "End-to-end", label: "Delivery ownership", detail: "Architecture to deployment" }
+];
 
 export const projectCategories = [
   "All Projects",
@@ -29,6 +37,9 @@ export const projectsData = [
     category: "On-Demand Logistics",
     shortDesc: "ระบบโลจิสติกส์และ On-demand Dispatch แบบครบวงจร ครอบคลุมการส่งอาหาร ซื้อของ ส่งพัสดุ พร้อมระบบติดตามสถานะเรียลไทม์ และระบบกระจายงานฉุกเฉิน",
     fullDesc: "Ecosystem โลจิสติกส์ระดับสายงานการขนส่งแบบ On-demand ที่รวมแอประหว่างลูกค้า (Customer), ไรเดอร์ (Driver Partner), และร้านค้า (Merchant) พร้อมส่วนงาน Dispatch Central C2 ที่ประมวลผลตำแหน่งแบบ WebSocket/Realtime Engine ช่วยคำนวณคิวและเส้นทางที่ดีที่สุดล่วงหน้า",
+    problem: "งานสั่งซื้อและงานส่งต้องเคลื่อนผ่านลูกค้า ร้านค้า และไรเดอร์โดยไม่สูญเสียสถานะ แม้จำนวนเหตุการณ์จะเพิ่มขึ้นแบบเรียลไทม์",
+    approach: "ออกแบบ workflow แบบ multi-role เชื่อม dispatch engine, location events และฐานข้อมูลสถานะไว้ใน production flow เดียว",
+    outcome: "ระบบใช้งานจริงที่รองรับการสั่งอาหาร ซื้อของ ส่งพัสดุ และติดตามงานแบบ real-time จากจุดเดียว",
     highlights: [
       "Real-time Driver Location & Route Optimization",
       "Dynamic Fare Calculation & Peak Surge Pricing",
@@ -47,6 +58,9 @@ export const projectsData = [
     category: "Web3 & Asset Tracking",
     shortDesc: "Super-App แพลตฟอร์มสำหรับติดตามสินทรัพย์ดิจิทัล แดชบอร์ดการเงิน และการเชื่อมต่อสัญญาอัจฉริยะ (Smart Contracts)",
     fullDesc: "แพลตฟอร์มบริหารจัดการพอร์ตฟอลิโอและวิเคราะห์สินทรัพย์ดิจิทัล เชื่อมต่อ Web3 Wallets และ Multi-Chain Indexing Engine ช่วยเฝ้าระวังธุรกรรมแบบ On-Chain และประมวลผล Smart Contract Calls ผ่านสถาปัตยกรรม UUPS Upgradeable Proxy",
+    problem: "ข้อมูลสินทรัพย์และธุรกรรมกระจายอยู่หลาย chain ทำให้ติดตามสถานะ ความเสี่ยง และ contract interaction ได้ยาก",
+    approach: "รวม wallet aggregation, on-chain indexing และ upgradeable contract architecture หลัง API gateway ที่ควบคุมได้",
+    outcome: "แพลตฟอร์มเดียวสำหรับสำรวจพอร์ต ติดตามเหตุการณ์ และเชื่อมต่อ smart contract แบบ multi-chain",
     highlights: [
       "Multi-chain Wallet Portfolio Aggregation",
       "UUPS Upgradeable Smart Contract Architecture",
@@ -65,6 +79,9 @@ export const projectsData = [
     category: "Mission Critical & SOS",
     shortDesc: "โมดูลต่อยอดสำหรับการประสานงานกู้ภัยฉุกเฉินและระบบโลจิสติกส์เชิงยุทธการ (Tactical C2 Logistics Engine)",
     fullDesc: "ระบบศูนย์บัญชาการสถานการณ์ฉุกเฉินและการกู้ภัย (Tactical Command & Control Center) ออกแบบให้ทำงานได้แม้สภาพเครือข่ายจำกัด มีระบบคิวส่งข้อมูล Offline-First Sync และ Edge Relay Station ช่วยประสานงานทีมภาคสนามและศูนย์รับแจ้งเหตุ SOS",
+    problem: "การประสานงานภาคสนามไม่สามารถพึ่งพาเครือข่ายที่เสถียรได้ แต่ตำแหน่ง เหตุการณ์ และลำดับความเร่งด่วนต้องไม่สูญหาย",
+    approach: "วางโครงสร้าง offline-first queue, edge relay และ event-driven dispatch พร้อมกลไก failover สำหรับพื้นที่สัญญาณจำกัด",
+    outcome: "แนวทาง C2 ที่ยังรักษา incident flow และ field coordination ได้เมื่อการเชื่อมต่อไม่สมบูรณ์",
     highlights: [
       "Offline-first Sync & Mesh Disaster Messaging",
       "Live GPS Fleet & Incident Location Tracking",
