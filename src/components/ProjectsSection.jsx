@@ -16,11 +16,11 @@ export default function ProjectsSection() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
           <div className="text-xs font-mono text-emerald-400 font-semibold tracking-wider uppercase mb-1">
-            Production Engineering Showcase
+            Selected engagements
           </div>
-          <h2 className="text-3xl font-bold text-white tracking-tight">Featured Systems & Applications</h2>
-          <p className="text-sm text-zinc-400 mt-1">
-            คัดสรรระบบโปรดักชันที่พัฒนาและออกแบบสถาปัตยกรรมระดับองค์กร
+          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">The systems are the evidence.</h2>
+          <p className="text-sm text-zinc-400 mt-2 max-w-2xl leading-relaxed">
+            เจาะลึกโจทย์ แนวทางออกแบบ และผลลัพธ์ของระบบที่สร้างขึ้นจริง—พร้อม production link เมื่อเปิดเผยได้
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export default function ProjectsSection() {
       </div>
 
       {/* Grid of Projects */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6">
         {filteredProjects.map((project) => (
           <ProjectCard
             key={project.id}

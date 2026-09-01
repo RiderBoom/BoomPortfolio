@@ -1,21 +1,19 @@
 import React from 'react';
-import { ExternalLink, Info } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 
 export default function ProjectCard({ project, onSelectProject }) {
   return (
-    <div className="p-8 rounded-xl bg-zinc-900/40 border border-zinc-800/70 hover:border-zinc-700 transition-all group relative overflow-hidden flex flex-col justify-between">
-      <div>
+    <article className="p-6 sm:p-9 rounded-2xl bg-zinc-900/30 border border-zinc-800/70 hover:border-zinc-700 transition-all group">
+      <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-8 lg:gap-14">
+        <div>
         {/* Header Tags */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div className="flex items-center space-x-2">
             <span className="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
               {project.tag}
             </span>
-            <span className="text-xs text-zinc-500 font-mono">{project.category}</span>
           </div>
-          <span className="text-xs font-mono text-zinc-400 bg-zinc-800/40 px-2 py-0.5 rounded border border-zinc-800">
-            {project.metrics}
-          </span>
+          <span className="text-xs font-mono text-zinc-500">{project.category}</span>
         </div>
 
         {/* Title */}
@@ -24,54 +22,54 @@ export default function ProjectCard({ project, onSelectProject }) {
         </h3>
 
         {/* Description */}
-        <p className="text-zinc-400 text-sm mt-3 leading-relaxed">
+        <p className="text-zinc-400 text-sm mt-4 leading-relaxed">
           {project.shortDesc}
         </p>
+        <div className="mt-6 inline-flex px-3 py-1.5 rounded-md border border-emerald-500/20 bg-emerald-500/5 text-xs font-mono text-emerald-400">
+          {project.metrics}
+        </div>
+        </div>
 
-        {/* Highlights */}
-        <div className="mt-4 space-y-1.5">
-          {project.highlights.slice(0, 2).map((item, idx) => (
-            <div key={idx} className="flex items-center space-x-2 text-xs text-zinc-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>{item}</span>
+        <div className="space-y-5">
+          {[
+            ['The problem', project.problem],
+            ['The approach', project.approach],
+            ['The outcome', project.outcome],
+          ].map(([label, copy]) => (
+            <div key={label} className="grid sm:grid-cols-[110px_1fr] gap-1 sm:gap-5">
+              <div className="text-[11px] uppercase tracking-[0.16em] font-mono text-zinc-600">{label}</div>
+              <p className="text-sm leading-relaxed text-zinc-300">{copy}</p>
             </div>
           ))}
-        </div>
-      </div>
-
-      <div className="mt-6 pt-4 border-t border-zinc-800/60 flex flex-wrap items-center justify-between gap-4">
-        {/* Tech badges */}
-        <div className="flex flex-wrap gap-1.5">
-          {project.tech.map((t) => (
-            <span key={t} className="text-xs font-mono px-2 py-0.5 rounded bg-zinc-800/50 text-zinc-400">
-              {t}
-            </span>
-          ))}
-        </div>
-
-        {/* Actions */}
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={() => onSelectProject(project)}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-700 text-xs text-zinc-200 font-medium transition-colors"
-          >
-            <Info className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Architecture & Details</span>
-          </button>
+          <div className="pt-5 border-t border-zinc-800/70 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-1.5">
+              {project.tech.slice(0, 5).map((t) => (
+                <span key={t} className="text-[11px] font-mono px-2 py-1 rounded bg-zinc-800/50 text-zinc-500">{t}</span>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => onSelectProject(project)}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs text-zinc-200 hover:text-white transition-colors"
+              >
+                <span>Read technical detail</span><ArrowRight className="w-3.5 h-3.5" />
+              </button>
 
           {project.liveUrl !== '#' && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-500 text-black text-xs font-semibold hover:bg-emerald-400 transition-colors"
               title="Visit Live System"
             >
-              <ExternalLink className="w-4 h-4" />
+                Live system <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
