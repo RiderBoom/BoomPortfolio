@@ -11,6 +11,8 @@ export default function Footer() {
         <div className="flex items-center space-x-4 text-zinc-400">
           <a href="#work" className="hover:text-emerald-400 transition-colors">Works</a>
           <span>·</span>
+          <a href="/wisitchai-bunrae.html" className="hover:text-emerald-400 transition-colors">Biography</a>
+          <span>·</span>
           <a href="#services" className="hover:text-emerald-400 transition-colors">Services</a>
           <span>·</span>
           <a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a>
