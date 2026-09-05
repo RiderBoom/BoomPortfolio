@@ -1,6 +1,15 @@
 # BoomPortfolio
 
-เว็บไซต์ Portfolio ของ Wisitchai Bunrae และ BoomTech Studio สำหรับนำเสนอผลงานด้าน Full-Stack Architecture, Real-Time Dispatch, Web3 และระบบ Mission-Critical
+เว็บไซต์ Portfolio อย่างเป็นทางการของ **วิศิษชัย บุญแร่ (Wisitchai Bunrae)** หรือ **RiderBoom** — Founder & CEO และ Lead System Architect แห่ง BoomTech สำหรับนำเสนอผลงานด้าน Full-Stack Architecture, Real-Time Dispatch, AI Orchestration, Web3 และระบบ Mission-Critical
+
+## Official identity
+
+- ชื่อไทย: วิศิษชัย บุญแร่
+- ชื่ออังกฤษ: Wisitchai Bunrae
+- ชื่อที่ใช้บนอินเทอร์เน็ต: RiderBoom
+- เว็บไซต์หลัก: https://ceo.boomtech.app/
+- Biography: https://ceo.boomtech.app/wisitchai-bunrae.html
+- GitHub: https://github.com/RiderBoom
 
 ## เทคโนโลยี
 
@@ -39,7 +48,7 @@ npm run build
 
 - `src/components` — ส่วนประกอบหน้าเว็บ
 - `src/data/portfolioData.js` — ข้อมูลโปรไฟล์ ผลงาน และบริการ
-- `public` — ไฟล์สาธารณะ เช่น favicon
+- `public` — ไฟล์สาธารณะ เช่น favicon, sitemap และ Biography
 - `.github/workflows/ci.yml` — ตรวจ lint, test และ build ทุก Pull Request
 
 ## ระบบแชท
